@@ -4,6 +4,8 @@ import * as React from "react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { type VariantProps } from "class-variance-authority";
+import { getLoginUrl } from "@/lib/api";
+import { LoaderCircle } from "lucide-react";
 
 interface GitHubAuthButtonProps extends React.ComponentProps<"button"> {
   variant?: VariantProps<typeof buttonVariants>["variant"];
@@ -17,14 +19,29 @@ export function GitHubAuthButton({
   size = "default",
   className,
   children,
+  onClick,
+  disabled,
   ...props
 }: GitHubAuthButtonProps) {
-  const handleAuth = () => {
-    const authServerUrl = process.env.NEXT_PUBLIC_AUTH_SERVER_URL;
-    if (authServerUrl) {
-      window.location.href = authServerUrl;
-    } else {
-      window.location.href = "http://localhost:8080/oauth2/authorization/github";
+  const [isLoading, setIsLoading] = React.useState(false);
+
+  const handleAuth = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (onClick) {
+      onClick(e);
+      if (e.defaultPrevented) return;
+    }
+
+    try {
+      setIsLoading(true);
+      const url = await getLoginUrl();
+      window.location.assign(url);
+    } catch (error) {
+      console.error("Failed to fetch login URL from backend, falling back to default:", error);
+      const serverUrl =
+        process.env.NEXT_PUBLIC_SERVER_URL?.replace(/\/+$/, "") ||
+        "http://localhost:8080";
+      // eslint-disable-next-line @next/next/no-location-assign-relative-destination
+      window.location.assign(`${serverUrl}/oauth2/authorization/github`);
     }
   };
 
@@ -32,11 +49,19 @@ export function GitHubAuthButton({
     <Button
       variant={variant}
       size={size}
-      className={cn("cursor-pointer font-medium", className)}
+      className={cn("cursor-pointer font-medium relative", className)}
       onClick={handleAuth}
+      disabled={disabled || isLoading}
       {...props}
     >
-      {children}
+      {isLoading ? (
+        <span className="inline-flex items-center gap-1.5">
+          <LoaderCircle className="size-3.5 animate-spin" />
+          <span>Connecting...</span>
+        </span>
+      ) : (
+        children
+      )}
     </Button>
   );
 }

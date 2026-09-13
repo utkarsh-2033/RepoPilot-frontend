@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
-import { GitHubAuthButton } from "@/components/landing/github-auth-button";
-import { GitHubIcon } from "@/components/icons/github-icon";
+
+
 import { GitBranch } from "lucide-react";
 
 export function Navbar() {
@@ -48,10 +48,7 @@ export function Navbar() {
             Sign in
           </Link>
 
-          <GitHubAuthButton size="sm" className="gap-1.5">
-            <GitHubIcon className="size-3.5" />
-            <span>Connect GitHub</span>
-          </GitHubAuthButton>
+          
         </div>
       </div>
     </header>
