@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { GitHubAuthButton } from "@/components/landing/github-auth-button";
+import { GitHubIcon } from "@/components/icons/github-icon";
 import { ArrowRight, Check, Code2, Terminal } from "lucide-react";
 
 export function Hero() {
@@ -30,6 +31,7 @@ export function Hero() {
         {/* CTA Row */}
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
           <GitHubAuthButton size="lg" className="w-full sm:w-auto gap-2 text-sm">
+            <GitHubIcon className="size-4.5" />
             <span>Continue with GitHub</span>
             <ArrowRight className="size-4" />
           </GitHubAuthButton>

@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { GitHubAuthButton } from "@/components/landing/github-auth-button";
-import { GitBranch, Star } from "lucide-react";
+import { GitHubIcon } from "@/components/icons/github-icon";
+import { GitBranch } from "lucide-react";
 
 export function Navbar() {
   return (
@@ -40,22 +41,15 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-3">
-          {/* <a
-            href="https://github.com"
-            target="_blank"
-            rel="noreferrer"
-            className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-mono font-medium rounded-md bg-card border border-border text-muted-foreground hover:text-foreground hover:border-border transition-colors"
+          <Link
+            href="/login"
+            className="hidden sm:inline-flex text-xs font-medium text-muted-foreground hover:text-foreground px-2 py-1 transition-colors"
           >
-            <Star className="size-3.5 fill-current text-primary" />
-            <span>4.8k</span>
-          </a> */}
-
-          <GitHubAuthButton variant="ghost" size="sm" className="hidden sm:inline-flex text-muted-foreground hover:text-foreground">
             Sign in
-          </GitHubAuthButton>
+          </Link>
 
           <GitHubAuthButton size="sm" className="gap-1.5">
-            <GitBranch className="size-3.5" />
+            <GitHubIcon className="size-3.5" />
             <span>Connect GitHub</span>
           </GitHubAuthButton>
         </div>

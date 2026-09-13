@@ -2,11 +2,12 @@
 
 import * as React from "react";
 import { GitHubAuthButton } from "@/components/landing/github-auth-button";
-import { Copy, Check, GitBranch } from "lucide-react";
+import { GitHubIcon } from "@/components/icons/github-icon";
+import { Copy, Check } from "lucide-react";
 
 export function CTASection() {
   const [copied, setCopied] = React.useState(false);
-  const command = "";
+  const command = "npx @repopilot/cli index --current-repo";
 
   const handleCopy = async () => {
     try {
@@ -30,7 +31,7 @@ export function CTASection() {
 
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
           <GitHubAuthButton size="lg" className="px-7 py-3 text-base gap-2.5 shadow-lg">
-            <GitBranch className="size-5" />
+            <GitHubIcon className="size-5" />
             <span>Continue with GitHub</span>
           </GitHubAuthButton>
         </div>

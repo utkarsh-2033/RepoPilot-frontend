@@ -1,0 +1,43 @@
+import type { Metadata } from "next";
+import { LoginHeader } from "@/components/login/login-header";
+import { OAuthCard } from "@/components/login/oauth-card";
+import { SamlNotice } from "@/components/login/saml-notice";
+import { CliFallback } from "@/components/login/cli-fallback";
+import { LoginFooter } from "@/components/login/login-footer";
+
+export const metadata: Metadata = {
+  title: "Sign in · RepoPilot Codebase Assistant",
+  description:
+    "Connect your GitHub account to index code repositories and ask grounded questions with exact AST citations.",
+};
+
+export default function LoginPage() {
+  return (
+    <div className="min-h-screen flex flex-col justify-between bg-background text-foreground relative overflow-x-hidden selection:bg-primary/30 selection:text-primary">
+      {/* Ambient background glow */}
+      <div className="fixed inset-0 pointer-events-none -z-10 flex items-center justify-center">
+        <div className="h-[450px] w-[550px] rounded-full bg-primary/10 blur-3xl" />
+      </div>
+
+      <LoginHeader />
+
+      <main className="relative z-10 flex-1 flex flex-col items-center justify-center px-4 py-10 sm:py-16">
+        <div className="w-full max-w-[460px] mx-auto">
+          {/* Top Pill Tag */}
+          <div className="flex justify-center mb-5">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[11px] font-mono uppercase tracking-wider">
+              <span className="size-1.5 rounded-full bg-primary animate-pulse" />
+              Decoupled AST Grounding Engine
+            </div>
+          </div>
+
+          <OAuthCard />
+          <SamlNotice />
+          <CliFallback />
+        </div>
+      </main>
+
+      <LoginFooter />
+    </div>
+  );
+}
