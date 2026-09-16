@@ -35,6 +35,7 @@ export function Hero() {
             variant="outline"
             size="lg"
             className="w-full sm:w-auto gap-2 text-sm border-border"
+            nativeButton={false}
             render={<a href="#how-it-works" />}
           >
             <Terminal className="size-4 text-primary" />

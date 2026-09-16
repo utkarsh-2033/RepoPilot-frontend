@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Badge  } from "@/components/ui/badge";
 import { SignInButton } from "@/components/landing/sign-in-button";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 import { GitBranch } from "lucide-react";
 
@@ -41,6 +42,7 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-3">
+          <ThemeToggle />
           <SignInButton className="px-7 py-3 text-base" />
           
         </div>

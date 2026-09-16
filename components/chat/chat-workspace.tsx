@@ -254,11 +254,15 @@ export function ChatWorkspace() {
                                             onDelete={() => handleDelete(session.id)}
                                         />
                                     )}
-                                </div> :
+                                </div>
+                                :
                                 <div className="rounded-md border border-dashed border-sidebar-border p-4 text-center">
                                     <p className="text-xs font-medium">No chats yet</p>
                                     <p className="mt-1 text-[10px] text-muted-foreground">Start a conversation from a repository.</p>
-                                </div>)}</div>
+                                </div>
+                        )
+                    }
+                </div>
                 <div className="border-t border-sidebar-border p-3">
                     <Link
                         href="/settings"

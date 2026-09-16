@@ -9,7 +9,21 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
-import { BookOpen, Check, ChevronDown, CircleAlert, GitBranch, ListFilter, Menu, MessageSquare, RefreshCw, Search, Settings2, SlidersHorizontal, X } from "lucide-react";
+import {
+  BookOpen,
+  Check,
+  ChevronDown,
+  CircleAlert,
+  GitBranch,
+  ListFilter,
+  Menu,
+  MessageSquare,
+  RefreshCw,
+  Search,
+  Settings2,
+  SlidersHorizontal,
+  X
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -98,13 +112,16 @@ export default function DashboardPage() {
               <h1 className="font-heading text-sm font-semibold">Repositories</h1>
             </div>
           </div>
-          <div className="flex flex-wrap items-center justify-end gap-2"><ThemeToggle /><Button
-            onClick={() => syncRepositories.mutate()}
-            disabled={syncRepositories.isPending}
-            className="gap-2"><RefreshCw
-              className={cn(syncRepositories.isPending && "animate-spin")} />
-            {syncRepositories.isPending ? "Syncing" : "Sync Repos"}
-          </Button></div>
+          <div className="flex flex-wrap items-center justify-end gap-2">
+            <ThemeToggle />
+            <Button
+              onClick={() => syncRepositories.mutate()}
+              disabled={syncRepositories.isPending}
+              className="gap-2"><RefreshCw
+                className={cn(syncRepositories.isPending && "animate-spin")} />
+              {syncRepositories.isPending ? "Syncing" : "Sync Repos"}
+            </Button>
+          </div>
         </header>
         <main className="mx-auto min-w-0 max-w-7xl space-y-7 px-4 py-8 sm:px-6 lg:px-8">
           <section className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
@@ -131,7 +148,8 @@ export default function DashboardPage() {
           </section>
           {syncRepositories.isError &&
             <div className="flex items-start justify-between gap-4 rounded-md border border-e-accent-foreground/30 bg-accent-foreground/10 p-3 text-sm text-destructive">
-              <div className="flex gap-2"><CircleAlert className="mt-0.5 size-4 shrink-0" />
+              <div className="flex gap-2">
+                <CircleAlert className="mt-0.5 size-4 shrink-0" />
                 <span>{syncRepositories.error instanceof Error ? syncRepositories.error.message : "Repository sync failed."}</span>
               </div>
               <Button variant="outline" size="sm"

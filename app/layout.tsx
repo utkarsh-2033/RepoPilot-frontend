@@ -29,6 +29,9 @@ export const metadata: Metadata = {
   title: "RepoPilot — AI Codebase Assistant ",
   description:
     "Connect GitHub, index your repositories in seconds, and ask questions about your code with 100% grounded AI answers and exact file citations.",
+    icons: {
+    icon: "/repopilot.png",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

@@ -17,13 +17,13 @@ export function Footer() {
           {/* Telemetry Status indicator */}
           <div className="flex items-center gap-2 font-mono text-xs text-emerald-400 bg-emerald-950/30 px-3 py-1 rounded border border-emerald-800/30">
             <span className="size-2 rounded-full bg-emerald-400" />
-            <span>All systems operational · Qdrant Cluster Healthy</span>
+            <span>All systems operational</span>
           </div>
 
           {/* Developer Links */}
           <div className="flex items-center gap-6 text-xs font-mono">
             <a
-              href="https://github.com"
+              href="https://github.com/utkarsh-2033/RepoPilot-frontend"
               target="_blank"
               rel="noreferrer"
               className="hover:text-foreground transition-colors"
