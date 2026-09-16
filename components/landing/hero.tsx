@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { SignInButton } from "@/components/landing/sign-in-button";
 import { Check, Code2, Terminal } from "lucide-react";
 
 export function Hero() {
@@ -29,9 +29,7 @@ export function Hero() {
 
         {/* CTA Row */}
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Button size="lg" className="px-7 py-3 text-base gap-2.5 shadow-lg">
-            <Link href="/login" className="w-full sm:w-auto gap-2 text-sm font-medium text-foreground underline">Sign in</Link>
-          </Button>
+          <SignInButton className="px-7 py-3 text-base" />
 
           <Button
             variant="outline"
