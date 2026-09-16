@@ -45,7 +45,7 @@ export function ProductPreview() {
         </div>
 
         {/* Workspace Layout: Mini Sidebar + Chat Area */}
-        <div className="grid grid-cols-1 md:grid-cols-12 min-h-[480px]">
+        <div className="grid grid-cols-1 md:grid-cols-12 min-h-120">
           {/* Mini Sessions Sidebar */}
           <div className="hidden md:block md:col-span-3 border-r border-border bg-muted/20 p-3 space-y-3">
             <div className="flex items-center justify-between pb-2 border-b border-border">
@@ -82,8 +82,7 @@ export function ProductPreview() {
                 <span className="truncate">RAG vector chunking</span>
                 <span className="text-[10px]">2d</span>
               </div>
-              <span className="text-[10px] text-muted-foreground/70">AST parsing vs fixed-window</span>
-            </div>
+              </div>
 
             <div className="p-2 rounded hover:bg-muted/40 text-muted-foreground text-[11px] cursor-pointer">
               <div className="flex justify-between">

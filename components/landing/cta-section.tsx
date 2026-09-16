@@ -1,9 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { GitHubAuthButton } from "@/components/landing/github-auth-button";
-import { GitHubIcon } from "@/components/icons/github-icon";
-import { Copy, Check } from "lucide-react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export function CTASection() {
   const [copied, setCopied] = React.useState(false);
@@ -30,30 +29,9 @@ export function CTASection() {
         </p>
 
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <GitHubAuthButton size="lg" className="px-7 py-3 text-base gap-2.5 shadow-lg">
-            <GitHubIcon className="size-5" />
-            <span>Continue with GitHub</span>
-          </GitHubAuthButton>
-        </div>
-
-        {/* CLI quick tip */}
-        <div className="mt-8 inline-block">
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-card border border-border font-mono text-xs text-foreground/90 shadow-sm">
-            <span className="text-muted-foreground">$</span>
-            <span>{command}</span>
-            <button
-              onClick={handleCopy}
-              className="ml-2 text-muted-foreground hover:text-foreground cursor-pointer p-0.5 rounded transition-colors"
-              title="Copy CLI Command"
-              aria-label="Copy CLI command"
-            >
-              {copied ? (
-                <Check className="size-3.5 text-primary" />
-              ) : (
-                <Copy className="size-3.5" />
-              )}
-            </button>
-          </div>
+          <Button size="lg" className="px-7 py-3 text-base gap-2.5 shadow-lg">
+            <Link href="/login" className="w-full sm:w-auto gap-2 text-sm font-medium text-foreground underline">Sign in</Link>
+          </Button>
         </div>
       </div>
     </section>

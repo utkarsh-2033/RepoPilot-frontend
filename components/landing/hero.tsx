@@ -1,22 +1,20 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { GitHubAuthButton } from "@/components/landing/github-auth-button";
-import { GitHubIcon } from "@/components/icons/github-icon";
-import { ArrowRight, Check, Code2, Terminal } from "lucide-react";
+import { Check, Code2, Terminal } from "lucide-react";
 
 export function Hero() {
   return (
     <section className="relative pt-16 pb-12 md:pt-24 md:pb-20 overflow-hidden">
       {/* Background radial glow */}
       <div className="absolute inset-0 -z-10 flex items-center justify-center">
-        <div className="h-[380px] w-[600px] rounded-full bg-primary/10 blur-3xl" />
+        <div className="h-95 w-150 rounded-full bg-primary/10 blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         {/* Eyebrow Pill */}
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-mono tracking-wide uppercase mb-6">
           <span className="size-2 rounded-full bg-primary animate-pulse" />
-          AI Codebase Assistant · RAG with AST Chunking
+          AI Codebase Assistant 
         </div>
 
         {/* Main Headline */}
@@ -31,7 +29,9 @@ export function Hero() {
 
         {/* CTA Row */}
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Link href="/login" className="w-full sm:w-auto gap-2 text-sm font-medium text-primary underline">Sign in</Link>
+          <Button size="lg" className="px-7 py-3 text-base gap-2.5 shadow-lg">
+            <Link href="/login" className="w-full sm:w-auto gap-2 text-sm font-medium text-foreground underline">Sign in</Link>
+          </Button>
 
           <Button
             variant="outline"
@@ -56,7 +56,7 @@ export function Hero() {
           </span>
           <span className="inline-flex items-center gap-1.5">
             <Code2 className="size-3.5 text-primary" />
-            AST Semantic Parsing
+            Semantic Parsing & Search
           </span>
         </div>
       </div>

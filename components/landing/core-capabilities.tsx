@@ -13,7 +13,7 @@ export function CoreCapabilities() {
             Engineered for deterministic code understanding.
           </h3>
           <p className="mt-4 text-muted-foreground text-base leading-relaxed">
-            No generic web search hallucinations. RepoPilot builds an indexed AST graph directly from your source tree.
+            No generic web search hallucinations. RepoPilot builds an indexed graph directly from your source tree.
           </p>
         </div>
 
@@ -48,16 +48,16 @@ export function CoreCapabilities() {
               </div>
               <div className="font-mono text-xs text-primary mb-1">02 / EMBEDDINGS</div>
               <CardTitle className="text-lg font-semibold text-foreground">
-                AST-Aware Code Indexing
+                Code Indexing with Metadata
               </CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-                Replaces naive character chunking with Abstract Syntax Tree (AST) boundary slicing for Java, Go, TypeScript, Python, and Rust. Embeddings persist in dedicated Qdrant clusters.
+                Index your codebase with rich metadata. Every file is tagged with filepath, language, size, and other relevant information.
               </p>
               <div className="font-mono text-xs text-muted-foreground flex items-center gap-1.5 pt-2 border-t border-border">
                 <span className="size-1.5 rounded-full bg-emerald-400" />
-                1536d dense vectors + BM25 sparse
+                context-aware embeddings
               </div>
             </CardContent>
           </Card>
@@ -70,12 +70,12 @@ export function CoreCapabilities() {
               </div>
               <div className="font-mono text-xs text-primary mb-1">03 / RETRIEVAL</div>
               <CardTitle className="text-lg font-semibold text-foreground">
-                Ask Grounded Questions
+                Grounded Questions with citations
               </CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-                Reciprocal Rank Fusion merges full-text search with vector proximity. Every answer includes verifiable source filenames, method names, and exact line ranges.
+                Ask grounded questions and get answers with verifiable citations. Every response includes the source complete filepath , filename, and approximate line range.
               </p>
               <div className="font-mono text-xs text-muted-foreground flex items-center gap-1.5 pt-2 border-t border-border">
                 <span className="size-1.5 rounded-full bg-emerald-400" />

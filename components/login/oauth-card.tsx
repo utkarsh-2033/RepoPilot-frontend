@@ -39,7 +39,7 @@ export function OAuthCard() {
           Sign in to RepoPilot
         </h1>
         <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed max-w-sm mx-auto">
-          Connect your GitHub account to index code repositories and ask grounded questions with exact AST citations.
+          Connect your GitHub account to index code repositories and ask grounded questions with exact citations.
         </p>
       </div>
 
@@ -92,35 +92,27 @@ export function OAuthCard() {
 
         <div className="mt-3 pt-2.5 border-t border-border text-[11px] text-muted-foreground flex items-center gap-1.5">
           <Info className="size-3.5 text-primary shrink-0" />
-          <span>Zero code leaves your boundary. AST slices persist in your isolated Qdrant vector collection.</span>
+          <span>Zero code leaves your boundary. Chunks persist in your isolated vector collection.</span>
         </div>
       </div>
 
       {/* Trust Badges List */}
       <div className="grid grid-cols-3 gap-2 text-center text-[10px] text-muted-foreground border-t border-border pt-4 mb-4">
+       
+       <div className="p-1.5 rounded bg-muted/30 border border-border">
+          <span className="block text-foreground font-medium">Read-Only OAuth</span>
+          <span className="text-muted-foreground/80">No Write Access</span>
+        </div>
+
         <div className="p-1.5 rounded bg-muted/30 border border-border">
-          <span className="block text-foreground font-medium">SOC 2 Type II</span>
-          <span className="text-muted-foreground/80">In Progress</span>
+          <span className="block text-foreground font-medium">No Data Retention</span>
+          <span className="text-muted-foreground/80">Ephemeral Context</span>
         </div>
         <div className="p-1.5 rounded bg-muted/30 border border-border">
           <span className="block text-foreground font-medium">No Model Training</span>
           <span className="text-muted-foreground/80">Zero Retention</span>
         </div>
-        <div className="p-1.5 rounded bg-muted/30 border border-border">
-          <span className="block text-foreground font-medium">AST Native</span>
-          <span className="text-muted-foreground/80">Tree-Sitter Chunked</span>
-        </div>
-      </div>
-
-      {/* Interactive Preview Link */}
-      <div className="text-center pt-1">
-        <Link
-          href="/"
-          className="text-xs text-primary hover:underline inline-flex items-center gap-1 font-medium transition-colors"
-        >
-          <span>Want to explore first? View interactive public demo</span>
-          <ArrowRight className="size-3" />
-        </Link>
+        {/* */}
       </div>
     </div>
   );

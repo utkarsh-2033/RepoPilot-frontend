@@ -10,42 +10,47 @@ interface Stage {
 
 const stages: Stage[] = [
   {
-    num: "STAGE 01",
-    title: "GitHub Webhook",
-    desc: "Pushes to default branch emit commit tree diffs.",
-    tag: "Read-Only Scopes",
-  },
-  {
-    num: "STAGE 02",
-    title: "Tree-Sitter AST",
-    desc: "Grammar parse preserves class, method & import scope.",
-    tag: "Semantic Boundaries",
-  },
-  {
-    num: "STAGE 03",
-    title: "Dense Embeddings",
-    desc: "AST chunks converted into dense vectors.",
-    tag: "1536-dim vectors",
-  },
-  {
-    num: "STAGE 04",
-    title: "Qdrant Hybrid RRF",
-    desc: "BM25 keyword search fused with cosine distance.",
-    tag: "<14ms p95 latency",
-  },
-  {
-    num: "STAGE 05",
-    title: "Ranked Context",
-    desc: "Top-k code chunks injected into LLM context window.",
-    tag: "Strict System Prompts",
-  },
-  {
-    num: "STAGE 06",
-    title: "Verified Citations",
-    desc: "Answers delivered with direct lines & file links.",
-    tag: "100% Deterministic",
-    highlight: true,
-  },
+  num: "STAGE 01",
+  title: "GitHub Repository Indexing",
+  desc: "GitHub tree and blob APIs retrieve repository files for indexing.",
+  tag: "GitHub API",
+},
+
+{
+  num: "STAGE 02",
+  title: "Code Filtering & Chunking",
+  desc: "Supported source files are filtered and split into token-based code chunks.",
+  tag: "TokenTextSplitter",
+},
+
+{
+  num: "STAGE 03",
+  title: "Local Embeddings",
+  desc: "Code chunks are converted into dense vector embeddings using Ollama.",
+  tag: "nomic-embed-text",
+},
+
+{
+  num: "STAGE 04",
+  title: "PGVector Retrieval",
+  desc: "Semantic similarity search retrieves the most relevant code chunks for each query.",
+  tag: "pgvector",
+},
+
+{
+  num: "STAGE 05",
+  title: "RAG Context Generation",
+  desc: "Retrieved chunks and their source metadata are assembled into the LLM context.",
+  tag: "Top-K Context",
+},
+
+{
+  num: "STAGE 06",
+  title: "Verified Citations",
+  desc: "LLM source IDs are validated and mapped to file paths and source locations.",
+  tag: "Deterministic Mapping",
+  highlight: true,
+},
 ];
 
 export function ArchitectureFlow() {

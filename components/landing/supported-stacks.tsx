@@ -5,14 +5,21 @@ export function SupportedStacks() {
     { name: "Python (FastAPI / Django)", dotColor: "bg-blue-400" },
     { name: "Golang", dotColor: "bg-cyan-400" },
     { name: "Rust", dotColor: "bg-amber-600" },
+    { name: "C# (.NET Core)", dotColor: "bg-purple-400" },
+    { name: "Ruby (Rails)", dotColor: "bg-red-400" },
+    { name: "PHP (Laravel / Symfony)", dotColor: "bg-pink-400" },
+    { name: "C++", dotColor: "bg-gray-400" },
+    { name: "Kotlin", dotColor: "bg-indigo-400" },
+    { name: "Swift", dotColor: "bg-teal-400" },
+    { name: "Scala", dotColor: "bg-violet-400" },
+    { name: "Elixir (Phoenix)", dotColor: "bg-green-400" },
+    
   ];
 
   return (
     <section className="py-16 border-t border-border bg-background" id="supported-stacks">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h3 className="text-xs font-mono uppercase tracking-widest text-muted-foreground mb-6 font-semibold">
-          First-Class AST Grammars Supported
-        </h3>
+    
         <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 font-mono text-sm text-foreground">
           {stacks.map((stack) => (
             <div
