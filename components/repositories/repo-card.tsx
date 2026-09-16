@@ -87,7 +87,7 @@ export function RepoCard({ repo }: { repo: GithubRepository }) {
         <span>{repo.isPrivate ? "Private" : "Public"}</span>
       </div>
 
-      <div className="flex items-center justify-between pt-1">
+      <div className="flex flex-wrap items-center justify-between gap-2 pt-1">
         {status.indexStatus === "READY" ? <Button size="sm" onClick={openChat} disabled={initSession.isPending} className="gap-1.5">{initSession.isPending ? <LoaderCircle className="animate-spin" /> : null}Open chat</Button> : <Button size="sm"  onClick={() => start()} disabled={isIndexing || isStarting} className="gap-1.5">{isIndexing || isStarting ? <LoaderCircle className="animate-spin" /> : <RefreshCw />} {status.indexStatus === "FAILED" ? "Retry indexing" : "Start indexing"}</Button>}
         <a
           href={repo.htmlUrl}
@@ -98,7 +98,7 @@ export function RepoCard({ repo }: { repo: GithubRepository }) {
           View on GitHub
           <ExternalLink className="size-3" />
         </a>
-        <span className="text-[10px] text-muted-foreground">Synced from GitHub</span>
+        <span className="ml-auto text-[10px] text-muted-foreground">Synced from GitHub</span>
       </div>
     </article>
   );

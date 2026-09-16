@@ -9,9 +9,10 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
-import { BookOpen, Check, ChevronDown, CircleAlert, GitBranch, LayoutDashboard, ListFilter, Menu, RefreshCw, Search, Settings2, SlidersHorizontal, X } from "lucide-react";
+import { BookOpen, Check, ChevronDown, CircleAlert, GitBranch, ListFilter, Menu, MessageSquare, RefreshCw, Search, Settings2, SlidersHorizontal, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 type VisibilityFilter = "all" | "public" | "private";
 
@@ -40,7 +41,7 @@ export default function DashboardPage() {
   const privateCount = repositories.length - publicCount;
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
       <aside className={cn("fixed inset-y-0 left-0 z-40 flex w-64 -translate-x-full flex-col border-r border-border bg-sidebar transition-transform lg:translate-x-0", mobileNavOpen && "translate-x-0")}>
         <div className="flex h-16 items-center justify-between border-b border-sidebar-border px-5">
           <Link href="/" className="flex items-center gap-2.5">
@@ -56,18 +57,18 @@ export default function DashboardPage() {
         <div className="flex flex-1 flex-col px-3 py-5">
           <p className="px-3 pb-2 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Workspace</p>
           <nav className="space-y-1" aria-label="Workspace navigation">
-            <Button variant="secondary" className="w-full justify-start gap-3">
-              <LayoutDashboard /> Overview
-            </Button>
-            <Button variant="default" className="w-full justify-start gap-3">
-              <BookOpen /> Repositories
+            <Link href="/dashboard" className="flex h-7 w-full items-center gap-3 rounded-md bg-sidebar-primary px-2 text-xs font-medium text-sidebar-primary-foreground">
+              <BookOpen className="size-4" /> Repositories
               <Badge variant="outline" className="ml-auto border-primary-foreground/30 text-primary-foreground">{repositories.length}</Badge>
-            </Button>
+            </Link>
+            <Link href="/chat" className="flex h-7 w-full items-center gap-3 rounded-md px-2 text-xs font-medium hover:bg-sidebar-accent">
+              <MessageSquare className="size-4" /> Sessions
+            </Link>
           </nav>
           <div className="mt-auto border-t border-sidebar-border pt-4">
-            <Button variant="ghost" className="w-full justify-start gap-3">
+            <Link href="/settings" className="flex h-7 w-full items-center gap-3 rounded-md px-2 text-xs font-medium hover:bg-sidebar-accent">
               <Settings2 /> Settings
-            </Button>
+            </Link>
             {user && <div className="mt-3 flex items-center gap-2.5 rounded-md bg-sidebar-accent p-2.5">
               {user.avatarUrl &&
                 <Image src={user.avatarUrl} alt={user.name || user.username} width={28} height={28} className="rounded-full" />}
@@ -97,15 +98,15 @@ export default function DashboardPage() {
               <h1 className="font-heading text-sm font-semibold">Repositories</h1>
             </div>
           </div>
-          <Button
+          <div className="flex flex-wrap items-center justify-end gap-2"><ThemeToggle /><Button
             onClick={() => syncRepositories.mutate()}
             disabled={syncRepositories.isPending}
             className="gap-2"><RefreshCw
               className={cn(syncRepositories.isPending && "animate-spin")} />
             {syncRepositories.isPending ? "Syncing" : "Sync Repos"}
-          </Button>
+          </Button></div>
         </header>
-        <main className="mx-auto max-w-7xl space-y-7 px-4 py-8 sm:px-6 lg:px-8">
+        <main className="mx-auto min-w-0 max-w-7xl space-y-7 px-4 py-8 sm:px-6 lg:px-8">
           <section className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
             <div>
               <Badge variant="outline" className="mb-3 gap-1.5 font-mono text-[10px] text-primary">
@@ -129,10 +130,11 @@ export default function DashboardPage() {
             </div>
           </section>
           {syncRepositories.isError &&
-            <div className="flex items-start justify-between gap-4 rounded-md border border-destructive/30 bg-destructive/10 p-3 text-sm text-destructive">
+            <div className="flex items-start justify-between gap-4 rounded-md border border-e-accent-foreground/30 bg-accent-foreground/10 p-3 text-sm text-destructive">
               <div className="flex gap-2"><CircleAlert className="mt-0.5 size-4 shrink-0" />
                 <span>{syncRepositories.error instanceof Error ? syncRepositories.error.message : "Repository sync failed."}</span>
-              </div><Button variant="outline" size="sm"
+              </div>
+              <Button variant="outline" size="sm"
                 onClick={() => syncRepositories.mutate()}>Retry
               </Button>
             </div>}
@@ -191,10 +193,20 @@ export default function DashboardPage() {
                     {filteredRepositories.map((repo) =>
                       <RepoCard key={repo.githubRepoId} repo={repo} />)}
                   </div> :
-                  <div className="rounded-lg border border-dashed border-border p-10 text-center">
-                    <Search className="mx-auto mb-3 size-5 text-muted-foreground" />
-                    <p className="text-sm font-medium">No repositories match your filters</p>
-                    <p className="mt-1 text-xs text-muted-foreground">Try a different search or visibility filter.</p>
+                  <div className="rounded-lg border border-dashed border-border bg-card p-10 text-center">
+                    <BookOpen className="mx-auto mb-3 size-5 text-muted-foreground" />
+                    <p className="text-sm font-medium">No repositories found</p>
+                    <p className="mt-1 text-xs text-muted-foreground">
+                      {search || visibility !== "all" ? "Try a different search or visibility filter." : "Sync your GitHub repositories to get started."}
+                    </p>
+                    {!search && visibility === "all" &&
+                      <Button
+                        onClick={() => syncRepositories.mutate()}
+                        disabled={syncRepositories.isPending}
+                        className="mt-4 gap-2">
+                        <RefreshCw className={cn(syncRepositories.isPending && "animate-spin")} />
+                        {syncRepositories.isPending ? "Syncing" : "Sync Repos"}
+                      </Button>}
                   </div>}
           </section>
         </main>
